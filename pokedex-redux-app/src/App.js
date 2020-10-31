@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Axios from "axios";
 import { connect } from "react-redux";
 import { fetchData } from "./actions";
@@ -6,7 +6,6 @@ import { BASE_URL } from "./constants";
 
 import PokemonList from "./components/PokemonList";
 
-import logo from "./logo.svg";
 import "./App.css";
 
 function App(props) {

@@ -1,6 +1,3 @@
-import Axios from "axios";
-import { BASE_URL } from "../constants";
-
 export const FETCH_DATA = "FETCH_DATA";
 export const SET_POKE = "SET_POKE";
 
