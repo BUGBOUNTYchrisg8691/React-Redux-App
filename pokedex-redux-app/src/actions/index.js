@@ -1,21 +1,19 @@
 import Axios from "axios";
 import { BASE_URL } from "../constants";
 
-export const FETCH_DATA = "SET_DATA";
+export const FETCH_DATA = "FETCH_DATA";
+export const SET_POKE = "SET_POKE";
 
-export function fetchData(data) {
+export function fetchData(arrOfPokemon) {
   return {
     type: FETCH_DATA,
-    payload: data,
+    payload: arrOfPokemon,
   };
 }
 
-//export function fetchData() {
-//return (dispatch) => {
-//return Axios.get(BASE_URL)
-//.then((resp) => dispatch(setData(data)))
-//.catch((err) => {
-//debugger;
-//});
-//};
-//}
+export function setPoke(pokemonObj) {
+  return {
+    type: SET_POKE,
+    payload: pokemonObj,
+  };
+}
