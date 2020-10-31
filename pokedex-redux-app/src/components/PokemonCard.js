@@ -11,27 +11,52 @@ function PokemonCard(props) {
         debugger;
       });
   }, []);
-
+  if (Object.keys(pokemon).length < 1) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="pokemon-card">
       <div className="pokemon-card-container">
         <div className="pokemon-card-header">
           <h2>{props.poke.name}</h2>
-          <img
-            src={pokemon.sprites.front_default}
-            alt={`${pokemon.name}-front-view`}
-          />
+          <div className="pokemon-card-header-img-outer-bg">
+            <div className="pokemon-card-header-img-inner-bg">
+              <img
+                src={pokemon.sprites.front_default}
+                alt={`${pokemon.name}-front-view`}
+              />
+            </div>
+          </div>
         </div>
         <div className="pokemon-card-body">
-          <ul>
-            {/*}{pokemon.stats.map((stat) => {
-              return (
-                <li>
-                  {stat.base_stat} {stat.stat.name}
-                </li>
-              );
-            })}*/}
-          </ul>
+          <label>
+            Types
+            <ul>
+              {pokemon.types.map((type) => {
+                return <li>{type.type.name}</li>;
+              })}
+            </ul>
+          </label>
+          <label>
+            Stats
+            <ul>
+              {pokemon.stats.map((stat) => {
+                return (
+                  <li>
+                    {stat.base_stat} {stat.stat.name}
+                  </li>
+                );
+              })}
+            </ul>
+          </label>
+          <label>
+            Abilities
+            <ul>
+              {pokemon.abilities.map((ability) => {
+                return <li>{ability.ability.name}</li>;
+              })}
+            </ul>
+          </label>
         </div>
       </div>
     </div>

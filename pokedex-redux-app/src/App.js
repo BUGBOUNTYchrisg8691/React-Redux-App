@@ -21,7 +21,7 @@ function App(props) {
   }, []);
   return (
     <div className="App">
-      <header>List of Pokemon</header>
+      <h1>List of Pokemon</h1>
       {props.pokemon && <PokemonList />}
     </div>
   );

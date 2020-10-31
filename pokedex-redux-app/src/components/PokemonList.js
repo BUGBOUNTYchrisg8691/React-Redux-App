@@ -5,7 +5,7 @@ import PokemonCard from "./PokemonCard";
 
 function PokemonList(props) {
   return (
-    <div>
+    <div className="pokemon-list-container">
       {props.pokemon.map((poke) => {
         return <PokemonCard key={poke.id} url={poke.url} poke={poke} />;
       })}
