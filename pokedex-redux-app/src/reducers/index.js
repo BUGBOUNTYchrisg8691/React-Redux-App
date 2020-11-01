@@ -1,21 +1,33 @@
-import { FETCH_DATA, SET_POKE } from "../actions";
+import {
+  FETCHING_POKEMON_START,
+  FETCHING_POKEMON_SUCCESS,
+  FETCHING_POKEMON_FAILURE,
+} from "../actions";
 
 const initialState = {
   pokemon: [],
-  poke: {},
+  isFetching: false,
+  error: "",
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_DATA:
+    case FETCHING_POKEMON_START:
       return {
         ...state,
-        pokemon: action.payload,
+        isFetching: true,
       };
-    case SET_POKE:
+    case FETCHING_POKEMON_SUCCESS:
       return {
         ...state,
-        poke: action.payload,
+        pokemon: [...action.payload],
+        isFetching: false,
+      };
+    case FETCHING_POKEMON_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isFetching: false,
       };
     default:
       return state;

@@ -1,35 +1,15 @@
-import { useEffect } from "react";
-import Axios from "axios";
-import { connect } from "react-redux";
-import { fetchData } from "./actions";
-import { BASE_URL } from "./constants";
-
+import React from "react";
 import PokemonList from "./components/PokemonList";
 
 import "./App.css";
 
-function App(props) {
-  useEffect(() => {
-    Axios.get(BASE_URL)
-      .then((resp) => {
-        props.fetchData(resp.data.results);
-      })
-      .catch((err) => {
-        debugger;
-      });
-  }, []);
+function App() {
   return (
     <div className="App">
       <h1>List of Pokemon</h1>
-      {props.pokemon && <PokemonList />}
+      <PokemonList />
     </div>
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    pokemon: state.pokemon,
-  };
-}
-
-export default connect(mapStateToProps, { fetchData })(App);
+export default App;

@@ -6,11 +6,14 @@ function PokemonCard(props) {
 
   useEffect(() => {
     Axios.get(props.url)
-      .then((resp) => setPokemon(resp.data))
+      .then((resp) => {
+        setPokemon(resp.data);
+      })
       .catch((err) => {
         debugger;
       });
-  }, []);
+  }, [props.url]);
+
   if (Object.keys(pokemon).length < 1) {
     return <div>Loading...</div>;
   }
@@ -33,7 +36,7 @@ function PokemonCard(props) {
             Types
             <ul>
               {pokemon.types.map((type) => {
-                return <li>{type.type.name}</li>;
+                return <li key={type.type.name}>{type.type.name}</li>;
               })}
             </ul>
           </label>
@@ -42,7 +45,7 @@ function PokemonCard(props) {
             <ul>
               {pokemon.stats.map((stat) => {
                 return (
-                  <li>
+                  <li key={stat.stat.name}>
                     {stat.base_stat} {stat.stat.name}
                   </li>
                 );
@@ -53,7 +56,9 @@ function PokemonCard(props) {
             Abilities
             <ul>
               {pokemon.abilities.map((ability) => {
-                return <li>{ability.ability.name}</li>;
+                return (
+                  <li key={ability.ability.name}>{ability.ability.name}</li>
+                );
               })}
             </ul>
           </label>

@@ -1,16 +1,23 @@
-export const FETCH_DATA = "FETCH_DATA";
-export const SET_POKE = "SET_POKE";
+import Axios from "axios";
 
-export function fetchData(arrOfPokemon) {
-  return {
-    type: FETCH_DATA,
-    payload: arrOfPokemon,
-  };
-}
+import { BASE_URL } from "../constants";
 
-export function setPoke(pokemonObj) {
-  return {
-    type: SET_POKE,
-    payload: pokemonObj,
-  };
-}
+export const FETCHING_POKEMON_START = "FETCHING_POKEMON_START";
+export const FETCHING_POKEMON_SUCCESS = "FETCHING_POKEMON_SUCCESS";
+export const FETCHING_POKEMON_FAILURE = "FETCHING_POKEMON_FAILURE";
+
+export const getPokemon = () => (dispatch) => {
+  dispatch({ type: FETCHING_POKEMON_START });
+  Axios.get(BASE_URL)
+    .then((resp) => {
+      dispatch({ type: FETCHING_POKEMON_SUCCESS, payload: resp.data.results });
+    })
+    .catch((err) => {
+      dispatch({
+        type: FETCHING_POKEMON_FAILURE,
+        //payload: JSON.stringify(err),
+        payload: `${err.response.message} code: ${err.response.code}`,
+      });
+      //debugger;
+    });
+};
