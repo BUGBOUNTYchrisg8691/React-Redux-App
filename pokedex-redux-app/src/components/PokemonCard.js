@@ -4,15 +4,15 @@ import Axios from "axios";
 function PokemonCard(props) {
   const [pokemon, setPokemon] = useState({});
 
-  useEffect(() => {
-    Axios.get(props.url)
-      .then((resp) => {
-        setPokemon(resp.data);
-      })
-      .catch((err) => {
-        debugger;
-      });
-  }, [props.url]);
+  //useEffect(() => {
+  //Axios.get(props.url)
+  //.then((resp) => {
+  //setPokemon(resp.data);
+  //})
+  //.catch((err) => {
+  //debugger;
+  //});
+  //}, [props.url]);
 
   if (Object.keys(pokemon).length < 1) {
     return <div>Loading...</div>;
