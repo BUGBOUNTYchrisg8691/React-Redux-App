@@ -1,32 +1,29 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getPokemon } from "../actions";
 
 import PokemonCard from "./PokemonCard";
 
 function PokemonList(props) {
+  const pokemon = useSelector((state) => state.pokemon);
+  const isFetching = useSelector((state) => state.isFetching);
+  const error = useSelector((state) => state.error);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    props.getPokemon();
+    dispatch(getPokemon());
   }, []);
 
   return (
     <div className="pokemon-list-container">
-      {props.isFetching ? <div>Loading Pokemon...</div> : null}
-      {props.error ? <div>Error: {props.error}</div> : null}
-      {props.pokemon.map((poke) => {
+      {isFetching ? <div>Loading Pokemon...</div> : null}
+      {error ? <div>Error: {error}</div> : null}
+      {pokemon.map((poke) => {
         return <PokemonCard key={poke.name} url={poke.url} poke={poke} />;
       })}
     </div>
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    pokemon: state.pokemon,
-    isFetching: state.isFetching,
-    error: state.error,
-  };
-}
-
-export default connect(mapStateToProps, { getPokemon })(PokemonList);
+export default PokemonList;

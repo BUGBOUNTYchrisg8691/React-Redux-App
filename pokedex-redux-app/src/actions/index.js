@@ -20,7 +20,7 @@ export const getPokemon = () => {
         dispatch({
           type: FETCHING_POKEMON_FAILURE,
           //payload: JSON.stringify(err),
-          payload: `error: ${err.message} - code: ${err.code}`,
+          payload: `${err.message} - code: ${err.code}`,
         });
       });
   };
